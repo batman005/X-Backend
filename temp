@@ -1,0 +1,1 @@
+atlascloud pe mongoDB ---> compass import --> cluster --> database --> schema --> model --> collection --> document
