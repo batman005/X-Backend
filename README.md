@@ -7,7 +7,16 @@ user should be able to post a tweet
    -- likes
    -- comment tweets
    -- hashtags(#) 
+   user
 
+// like 
+      like on tweet , like on comment tweet
+      user
+      
+// comment 
+       content 
+       like 
+       user
 USER
    -- username 
    -- authentication
