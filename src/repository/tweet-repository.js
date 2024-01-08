@@ -1,50 +1,61 @@
-import Tweet from '../models/tweet.js';
-import CrudRepository from './crud-repositoy.js';
+import Tweet from "../models/tweet.js";
+import CrudRepository from "./crud-repository.js";
+
 
 class TweetRepository extends CrudRepository {
+
     constructor() {
-        super(Tweet);
+        super(Tweet)
     }
-    async createTweet(data) {
+    async create(data)
+    {
         try {
-            let tweet = await Tweet.create(data);
-            return tweet;
-        } catch (error) {
-            console.log(error);
-            throw error;
+             let tweet = await Tweet.create(data);
+             return tweet;
         }
-    }
-    async getAllTweets() {
-        try {
-            let tweets = await Tweet.find({});
-            return tweets;
-        } catch (error) {
+        catch(error) {
             console.log(error);
             throw error;
         }
     }
 
-    async getTweet(id) {
+    async getAllTweets()
+    {
         try {
-            let tweet = await Tweet.findById(id);
-            return tweet;
-        } catch (error) {
+             let tweets = await Tweet.find({});
+             return tweets;
+        }
+        catch(error) {
             console.log(error);
             throw error;
         }
     }
 
-    async deleteTweet(data) {
+    async getTweet(id)
+    {
         try {
-            let tweet = await Tweet.deleteOne(data);
-            return tweet;
-        } catch (error) {
+             let tweet = await Tweet.findById(id);
+             return tweet;
+        }
+        catch(error) {
             console.log(error);
             throw error;
         }
     }
 
+    async deleteTweet(data)
+    {
+        try {
+             let tweet = await Tweet.deleteOne(data);
+             return tweet;
+        }
+        catch(error) {
+            console.log(error);
+            throw error;
+        }
+    }
 }
 
 
 export default TweetRepository;
+/// CRUD - create get delete

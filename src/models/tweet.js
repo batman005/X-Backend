@@ -1,22 +1,29 @@
-import mongoose from 'mongoose';
-const { Schema} = mongoose;
+import { ObjectId } from "bson";
+import mongoose from "mongoose";
 
-const tweetSchema = new Schema({
-    content:{
-        type:String,
-        required:true,
+const tweetSchema = new mongoose.Schema({
+    content: {
+        type: String,
+        required:true
     },
-    likes:{
-        type:Number
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
+    ],
+    noOfRetweets: {
+        type: Number
     },
-    noofRetweets:{
-        type:Number
-    },
-    comment:{
-        type: String
-    }
-})
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ],
+});
 
-const Tweet = mongoose.model('Tweet', tweetSchema);
+
+const Tweet =  mongoose.model('Tweet',tweetSchema);
 
 export default Tweet;

@@ -1,3 +1,13 @@
 atlascloud pe mongoDB ---> compass import --> cluster --> database --> schema --> model --> collection --> document
 
 I am having an amazing day at goa beach #travel #beach
+
+User
+Email
+pass
+name
+
+sign - email/passs
+
+getUserByemail
+compare the password true?sign in 

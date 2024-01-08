@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true,
-        unique: true,
+        required:true,
+        unique:true
     },
     password: {
         type: String
@@ -15,11 +15,27 @@ const userSchema = new Schema({
     },
     tweets: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId
         }
-    ]
-})
+    ],
+    name:{
+        type: String
+    },
+});
 
-const User = mongoose.model('User', userSchema);
+userSchema.pre('save', async function(next) {
+    const user = this;
+    const salt = bcrypt.genSaltSync(9);
+    const encryptedPassword = bcrypt.hashSync(user.password, salt);
+    user.password = encryptedPassword;
+    next();
+});
+
+userSchema.methods.comparePassword = function compare(password) {
+    const user = this;
+    return bcrypt.compareSync(password, user.password);
+}
+
+const User =  mongoose.model('User', userSchema);
 
 export default User;

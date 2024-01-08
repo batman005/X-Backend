@@ -1,38 +1,44 @@
-import Hashtag from "../models/hastag";
-import CrudRepository from "./crud-repositoy";
+import Hashtag from "../models/hashtag.js";
+import CrudRepository from "./crud-repository.js";
 
 class HashtagRepository extends CrudRepository {
+
     constructor() {
-        super(Hashtag);
+        super(Hashtag)
     }
-  
-    
-    async bulkCreateHashtag(data) {
+
+
+    async bulkCreate(data) {
         try {
-            let hashtags = await Hashtag.insertMany(data);
-            return hashtags;
-        } catch (error) {
+            const tags = await Hashtag.insertMany(data);
+            return tags;
+        }
+        catch (error) {
             console.log(error);
             throw error;
         }
     }
 
-    //get hashtag by name
-    async getHashtagByName(text) {
+    //get by name
+    async findByName(text) {
         try {
-            let hashtag = await Hashtag.find({ text: text });
+            let hashtag = await Hashtag.find({
+                text: text
+            });
             return hashtag;
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error);
             throw error;
         }
     }
 
-    async getHastag(id) {
+    async getHashtag(id) {
         try {
             let hashtag = await Hashtag.findById(id);
             return hashtag;
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error);
             throw error;
         }
@@ -42,11 +48,13 @@ class HashtagRepository extends CrudRepository {
         try {
             let hashtag = await Hashtag.deleteOne(data);
             return hashtag;
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error);
             throw error;
         }
     }
 }
+
 
 export default HashtagRepository;

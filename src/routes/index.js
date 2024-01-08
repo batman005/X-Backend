@@ -1,8 +1,21 @@
-import express from 'express';
-import { createTweet } from '../controller/tweet-controller.js';
-const router = express.Router();
+import express from "express";
+import {createTweet,getTweet}  from "../controllers/tweet-controller.js";
+import {signUp, signIn} from "../controllers/user-controller.js";
+import { toggleLike } from "../controllers/like-controller.js";
+
+const router = express.Router()
+
+ 
+router.post('/tweet',createTweet);
+
+router.get('/tweet/:id',getTweet);
+
+router.post('/signup', signUp); 
+
+router.post('/signin', signIn);
+
+router.post('/likes/toggle', toggleLike);
 
 
-router.post('/tweets', createTweet);
 
 export default router;
