@@ -11,3 +11,10 @@ sign - email/passs
 
 getUserByemail
 compare the password true?sign in 
+
+
+issue that user a JWT Token
+
+/signIn
+/createTweet- content,image,token -- create service 
+//
